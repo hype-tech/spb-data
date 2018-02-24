@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Все районы и улицы Санкт-петербурга и Ленинградской области</title>
+</head>
+<body>
+	<div id="app">
+		<form>
+			<div>
+				<label for="one">Выберите Санкт-Петербург или ЛО</label>
+				<select name="one" id="one" v-model="selectedType" v-on:change="isSelectedType">
+					<option value="null" selected disabled>Ничего не выбрано</option>
+					<option value="spb">Санкт-Петербург</option>
+					<option value="lo">Ленинградская область</option>
+				</select>
+				<hr>
+			</div>
+			<div v-if="districtsList.length !== 0">
+				<label for="two">Выберите район</label>
+				<select name="two" id="two" v-model="selectedDistrict" v-on:change="selectDistrict">
+					<option value="null" selected disabled>Ничего не выбрано</option>
+					<option v-for="(distrist, distristIndex) in districtsList" :value="distristIndex" :key="distristIndex">{{ distrist.name }}</option>
+				</select>
+				<hr>
+			</div>
+			<div v-if="nasPunktList.length !== 0">
+				<label for="three">Выберите населенный пункт</label>
+				<select name="three" id="three" v-model="selectedNasPunkt" v-on:change="isSelectedNasPunkt">
+					<option value="null" selected disabled>Ничего не выбрано</option>
+					<option v-for="(nasPunkt, nasPunktIndex) in districtsList" :value="nasPunktIndex" :key="nasPunktIndex">{{ nasPunkt.name }}</option>
+				</select>
+				<hr>
+			</div>
+			<div v-if="streetsList.length !== 0">
+				<label for="three">Выберите улицу</label>
+				<select name="three" id="three">
+					<option value="null" selected disabled>Ничего не выбрано</option>
+					<option v-for="(streets, streetsIndex) in streetsList" :value="streetsIndex" :key="streetsIndex">{{ streets.name }}</option>
+				</select>
+			</div>
+		</form>
+	</div>
+	<script src="./data/spb.js"></script>
+	<script src="./data/lo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
